@@ -12,7 +12,7 @@
 
         <tbody>
 
-        <tr *ngFor="let product of products">
+        <tr *ngFor="let product of products$ | async"> <!-- utiliser ce pipe puis async donc automatiquement mon front end fait un subscribe -->
           <td>{{product.name}}</td>
           <td>{{product.price}}</td>
           <td>

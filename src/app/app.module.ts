@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { NewProductComponent } from './new-product/new-product.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {ProductService} from "./services/product.service";
 
 @NgModule({
   declarations: [
@@ -18,11 +19,12 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule //pour start sending requests from client to server and get res
+    // and we'll inject it in the component of products
   ],
   providers: [
     provideClientHydration()
-  ],
+  ],//here where we call service
   bootstrap: [AppComponent]
 })
 export class AppModule { }

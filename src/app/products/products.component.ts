@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {ProductService} from "../services/product.service";
+import {Product} from "../model/product.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-products',
@@ -8,19 +11,35 @@ import {HttpClient} from "@angular/common/http";
 })
 
 
-export class ProductsComponent {
-  constructor(private httpClient : HttpClient) {
+export class ProductsComponent implements OnInit{
+
+  products$! : Observable<Array<Product>>; // that means ! to i know it's not intialized just keep it
+
+  constructor(private productService : ProductService) {
 
   }
+  ngOnInit(): void {
+      /*  this.productService.getProducts()
+          .subscribe(
+            {
+            next : data =>
+              this.products=data,
+            error: err => {
+              console.log(err);
+              }   }
+          )*/
+    this.products$ =this.productService.getProducts();
+    }//des le demarage et la genertion de composant on l'affecte à cet URL de backend
 
-  products : Array<any>=[
-    {id : 1, name :  "computer" , price : 40559 , checked : false},
-    {id : 2, name :  "appleWatch" , price : 2000 , checked : true},
-    {id : 3, name :  "phone" ,  price : 4559 , checked : false},
-  ]
 
+  handleCheckProduct(product : Product) {
+    this.productService.getProducts()
+      .subscribe( {
+      next : updatedProduct =>
+      {
+        product.checked=!product.checked;
+      }
+    })
 
-  handleCheckProduct(product : any) {
-    product.checked = !product.checked;
   }
 }
