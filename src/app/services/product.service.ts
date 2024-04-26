@@ -19,4 +19,9 @@ export class ProductService {
   public checkProduct(product:Product):Observable<any>{
     return this.httpClient.patch<Product>(`http://localhost:8080/products/${product.id}`,
       {checked: !product.checked});  }
+
+  public deleteProduct(product:Product){
+    return this.httpClient.delete<any>(`http://localhost:8080/products/${product.id}`);   }
+//on va pas retounrer un prdt donc c'est void
+
 }

@@ -1,37 +1,19 @@
 {
   "products": [
     {
-      "id": "1",
-      "name": "PC",
-      "price": 20002,
-      "checked": true
-    },
-    {
-      "id": "2",
-      "name": "SmartPhone",
-      "price": 2002,
-      "checked": true
-    },
-    {
-      "id": "3",
-      "name": "Headphones",
-      "price": 200,
-      "checked": true
-    },
-    {
-      "id": "4",
-      "name": "Printer",
-      "price": 1000,
-      "checked": false
-    },
-    {
       "id": "5",
       "name": "PC BUREAU",
       "price": 12000,
       "checked": false
     },
     {
-      "id": "4",
+      "id": "2",
+      "name": "PC PORTABLE",
+      "price": 20000,
+      "checked": true
+    },
+    {
+      "id": "3",
       "name": "PC PORTABLE",
       "price": 20000,
       "checked": true

@@ -12,7 +12,7 @@
 
         <tbody>
 
-        <tr *ngFor="let product of products$ | async"> <!-- utiliser ce pipe puis async donc automatiquement mon front end fait un subscribe -->
+        <tr *ngFor="let product of products"> <!-- utiliser ce pipe puis async donc automatiquement mon front end fait un subscribe -->
           <td>{{product.name}}</td>
           <td>{{product.price}}</td>
           <td>
@@ -20,7 +20,11 @@
             <button (click)="handleCheckProduct(product)" class="btn btn-outline-danger">
               <i [class] = "product.checked? 'bi bi-check ': 'bi bi-square'"></i>
             </button>
-
+          </td>
+          <td>
+            <button (click)="deleteHandle(product)" class="btn btn-outline-info" >
+              <i class="bi bi-trash"></i>
+            </button>
           </td>
         </tr>
         </tbody>
