@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ng-container *ngFor="let action of actions">
+          <li class="nav-item">
+            <button class="nav-link"
+                    (click)="setCurrentAction(action)"
+                    [routerLink]="action.route"
+
+                    [ngClass]="{'btn': true, 'btn-info':
+                    action == currentAction,
+                    'btn-outline-info':
+                    action != currentAction,
+                    'ms-2': true}">
+              {{action.title}}
+              <i class="bi bi-{{action.icon}}"></i>
+            </button>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
