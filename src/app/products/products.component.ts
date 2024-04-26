@@ -13,7 +13,7 @@ import {Observable} from "rxjs";
 
 export class ProductsComponent implements OnInit{
 
-  products : Array<Product>=[]; // that means ! to i know it's not intialized just keep it
+  products : Array<Product>=[]; // that means ! toi know it's not intialized just keep it
 
   constructor(private productService : ProductService) {
 
