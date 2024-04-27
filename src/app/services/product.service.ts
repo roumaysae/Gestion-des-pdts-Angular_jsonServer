@@ -8,20 +8,30 @@ import {Product} from "../model/product.model";
 })//it's already provided in the whole root//dés de demarage il est instancié
 export class ProductService {
 
-  constructor(private httpClient : HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   //1st method
-  public getProducts():Observable<Array<Product>>{
+  public getProducts(): Observable<Array<Product>> {
     return this.httpClient.get<Array<Product>>("http://localhost:8080/products");
   }
 
   //2nd method
-  public checkProduct(product:Product):Observable<any>{
+  public checkProduct(product: Product): Observable<any> {
     return this.httpClient.patch<Product>(`http://localhost:8080/products/${product.id}`,
-      {checked: !product.checked});  }
+      {checked: !product.checked});
+  }
 
-  public deleteProduct(product:Product){
-    return this.httpClient.delete<any>(`http://localhost:8080/products/${product.id}`);   }
+  public deleteProduct(product: Product) {
+    return this.httpClient.delete<any>(`http://localhost:8080/products/${product.id}`);
+  }
+
 //on va pas retounrer un prdt donc c'est void
 
+ public addProduct(product: Product): Observable<Product> {
+     return this.httpClient.post<Product>(`http://localhost:8080/products`,product);
+}
+ public searchProducts(keyword: string): Observable<Array<Product>> {
+    return this.httpClient.get<Array<Product>>(`http://localhost:8080/products?name_like=${keyword}`);
+ }
 }

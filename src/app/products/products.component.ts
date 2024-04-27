@@ -14,7 +14,7 @@ import {Observable} from "rxjs";
 export class ProductsComponent implements OnInit{
 
   products : Array<Product>=[]; // that means ! toi know it's not intialized just keep it
-
+  public  keyword : string="";
   constructor(private productService : ProductService) {
 
   }
@@ -60,5 +60,14 @@ export class ProductsComponent implements OnInit{
        }
      } //ici je mets à jour le front end
      )
+  }
+
+  searchProducts() {
+      this.productService.searchProducts(this.keyword)
+      .subscribe(
+        {
+          next: data => this.products=data
+        }
+      )
   }
 }

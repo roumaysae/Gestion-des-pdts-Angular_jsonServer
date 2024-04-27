@@ -8,6 +8,7 @@ import { ProductsComponent } from './products/products.component';
 import { NewProductComponent } from './new-product/new-product.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {ProductService} from "./services/product.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -19,8 +20,10 @@ import {ProductService} from "./services/product.service";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule //pour start sending requests from client to server and get res
+    HttpClientModule, //pour start sending requests from client to server and get res
     // and we'll inject it in the component of products
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration()

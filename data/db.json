@@ -1,12 +1,6 @@
 {
   "products": [
     {
-      "id": "5",
-      "name": "PC BUREAU",
-      "price": 12000,
-      "checked": false
-    },
-    {
       "id": "2",
       "name": "PC PORTABLE",
       "price": 20000,
@@ -17,6 +11,18 @@
       "name": "PC PORTABLE",
       "price": 20000,
       "checked": true
+    },
+    {
+      "id": "2468",
+      "name": "HEAD PHONES",
+      "price": "200",
+      "checked": true
+    },
+    {
+      "id": "0cf8",
+      "name": "pc bureau",
+      "price": "20000",
+      "checked": false
     }
   ]
 }
