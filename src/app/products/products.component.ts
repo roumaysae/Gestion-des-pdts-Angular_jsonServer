@@ -15,6 +15,9 @@ export class ProductsComponent implements OnInit{
 
   products : Array<Product>=[]; // that means ! toi know it's not intialized just keep it
   public  keyword : string="";
+   totalPages: number=0;
+   pagesize: number=3;
+   currentPage: number=1;
   constructor(private productService : ProductService) {
 
   }
@@ -24,11 +27,16 @@ export class ProductsComponent implements OnInit{
    }//des le demarage et la genertion de composant on l'affecte à cet URL de backend
 
   public getProducts(){
-      this.productService.getProducts()
+      this.productService.getProducts(this.currentPage,this.pagesize)
         .subscribe(
           {
-          next : data =>
-            this.products=data,
+            next: (res) =>{
+              this.products = res.body as Product[];//cast to product array
+            let totalProducts:number = parseInt(res.headers.get("x-total-count")!);
+            this.totalPages = Math.ceil(totalProducts/this.pagesize);
+            if(totalProducts % this.pagesize !=0)
+              this.totalPages++;
+            },
           error: err => {
             console.log(err);
             }   }
@@ -70,4 +78,9 @@ export class ProductsComponent implements OnInit{
         }
       )
   }
+
+  handlePages(page:number) {
+    this.currentPage=page;
+    this.getProducts();
+  } //ici je vais changer la page
 }
