@@ -23,11 +23,11 @@ export class ProductsComponent implements OnInit{
   }
 
   ngOnInit(): void {
-  this.getProducts();
+  this.searchProducts();
    }//des le demarage et la genertion de composant on l'affecte à cet URL de backend
 
-  public getProducts(){
-      this.productService.getProducts(this.currentPage,this.pagesize)
+  public searchProducts(){
+      this.productService.searchProducts(this.keyword,this.currentPage,this.pagesize)
         .subscribe(
           {
             next: (res) =>{
@@ -41,11 +41,11 @@ export class ProductsComponent implements OnInit{
             console.log(err);
             }   }
         )
-   // this.products =this.productService.getProducts();
+   // this.products =this.productService.searchProducts();
   }
 
   handleCheckProduct(product : Product) {
-    this.productService.getProducts()
+    this.productService.searchProducts()
       .subscribe( {
       next : updatedProduct =>
       {
@@ -62,7 +62,7 @@ export class ProductsComponent implements OnInit{
      .subscribe(
      {
        next: value  =>{
-//this.getProducts();
+//this.searchProducts();
  this.products = this.products.filter(p=>p.
     id != product.id)
        }
@@ -70,17 +70,9 @@ export class ProductsComponent implements OnInit{
      )
   }
 
-  searchProducts() {
-      this.productService.searchProducts(this.keyword)
-      .subscribe(
-        {
-          next: data => this.products=data
-        }
-      )
-  }
 
   handlePages(page:number) {
     this.currentPage=page;
-    this.getProducts();
+    this.searchProducts();
   } //ici je vais changer la page
 }
