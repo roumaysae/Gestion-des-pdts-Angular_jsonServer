@@ -11,6 +11,7 @@ import { ProductsComponent } from './products/products.component';
 import { NewProductComponent } from './new-product/new-product.component';
 import { ProductService } from './services/product.service';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     HomeComponent,
     ProductsComponent,
     NewProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

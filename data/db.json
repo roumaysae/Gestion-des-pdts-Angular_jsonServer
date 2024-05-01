@@ -3,24 +3,6 @@
     {
       "id": "0cf8",
       "name": "pc bureau",
-      "price": "200",
-      "checked": true
-    },
-    {
-      "id": "0cf8",
-      "name": "pc bureau",
-      "price": "20000",
-      "checked": false
-    },
-    {
-      "id": "0cf8",
-      "name": "pc bureau",
-      "price": "20000",
-      "checked": false
-    },
-    {
-      "id": "0cf8",
-      "name": "pc bureau",
       "price": "20000",
       "checked": false
     },
@@ -91,10 +73,10 @@
       "id": "uRDXX0h"
     },
     {
+      "id": "UnowMVr",
       "name": "smart watch",
-      "price": "200",
-      "checked": true,
-      "id": "UnowMVr"
+      "price": "100",
+      "checked": true
     }
   ]
 }

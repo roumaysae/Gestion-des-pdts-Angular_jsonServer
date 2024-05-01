@@ -4,43 +4,42 @@ import {ProductService} from "../services/product.service";
 import {Product} from "../model/product.model";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
+import {AppStateService} from "../services/app-state.service";
 
 @Component({
   selector: 'app-products',
-  templateUrl: './products.component.html',
+  templateUrl:'./products.component.html',
   styleUrl: './products.component.css'
 })
 
-
 export class ProductsComponent implements OnInit{
-
-  products : Array<Product>=[]; // that means ! toi know it's not intialized just keep it
-  public  keyword : string="";
-   totalPages: number=0;
-   pagesize: number=3;
-   currentPage: number=1;
-  constructor(private productService : ProductService,private router:Router)
-  {}
-
+  constructor(private productService : ProductService,private router:Router,
+              public appstate : AppStateService) {
+  }
   ngOnInit(): void {
   this.searchProducts();
    }//des le demarage et la genertion de composant on l'affecte à cet URL de backend
 
   public searchProducts(){
-      this.productService.searchProducts(this.keyword,this.currentPage,this.pagesize)
+      this.productService.searchProducts(this.appstate.productstate.keyword,this.appstate.productstate.currentPage,this.appstate.productstate.pagesize)
         .subscribe(
           {
-            next: (res) =>{
-              this.products = res.body as Product[];//cast to product array
-            let totalProducts:number = parseInt(res.headers.get("x-total-count")!);
-            this.totalPages = Math.ceil(totalProducts/this.pagesize);
-            if(totalProducts % this.pagesize !=0)
-              this.totalPages++;
-            },
+            next: (res) => {
+              let products = res.body as Product[];//cast to product array
+
+              let totalProducts: number = parseInt(res.headers.get("x-total-count")!);
+
+              //   this.appstate.productstate.totalProducts = totalProducts;
+              let totalPages = Math.ceil(totalProducts / this.appstate.productstate.pagesize);
+              if (totalProducts % this.appstate.productstate.pagesize != 0){
+                totalPages++;
+            }
+              this.appstate.setProductState({totalPages:totalPages,products:products,totalProducts:totalProducts});
+          },
           error: err => {
             console.log(err);
             }   }
-        )
+  )
    // this.products =this.productService.searchProducts();
   }
 
@@ -63,8 +62,9 @@ export class ProductsComponent implements OnInit{
      {
        next: value  =>{
 //this.searchProducts();
- this.products = this.products.filter(p=>p.
-    id != product.id)
+ //this.appstate.productstate.products = this.appstate.productstate.products.filter(
+   //(p:any)=> p.id != product.id)
+       this.searchProducts(); //je fais un refresh
        }
      } //ici je mets à jour le front end
      )
@@ -72,7 +72,7 @@ export class ProductsComponent implements OnInit{
 
 
   handlePages(page:number) {
-    this.currentPage=page;
+    this.appstate.productstate.currentPage = page;
     this.searchProducts();
   } //ici je vais changer la page
 
