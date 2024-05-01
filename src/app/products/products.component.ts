@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../services/product.service";
 import {Product} from "../model/product.model";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -18,9 +19,8 @@ export class ProductsComponent implements OnInit{
    totalPages: number=0;
    pagesize: number=3;
    currentPage: number=1;
-  constructor(private productService : ProductService) {
-
-  }
+  constructor(private productService : ProductService,private router:Router)
+  {}
 
   ngOnInit(): void {
   this.searchProducts();
@@ -75,4 +75,8 @@ export class ProductsComponent implements OnInit{
     this.currentPage=page;
     this.searchProducts();
   } //ici je vais changer la page
+
+  editProduct(product: Product) {
+    this.router.navigateByUrl(`/editProduct/${product.id}`).then(r => console.log("ok"));
+  }
 }

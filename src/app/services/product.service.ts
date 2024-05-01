@@ -32,4 +32,11 @@ export class ProductService {
      return this.httpClient.post<Product>(`http://localhost:8080/products`,product);
 }
 
+  getProductById(productId: number): Observable<Product>{
+   return  this.httpClient.get<Product>(`http://localhost:8080/products/${productId}`);
+  }
+
+  updateProduct(product: Product): Observable<Product>{
+    return this.httpClient.put<Product>(`http://localhost:8080/products/${product.id}`,product);
+  }
 }
